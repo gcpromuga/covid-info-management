@@ -23,8 +23,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_FULL_NAME + " TEXT NOT NULL, "
                 + COL_AGE + " INTEGER NOT NULL, "
-                + COL_DOSE + " INTEGER NOT NULL, "
-                + COL_VACCINE + " STRING NOT NULL "
+                + COL_DOSE + " TEXT NOT NULL, "
+                + COL_VACCINE + " TEXT NOT NULL "
             +");";
 
     public DBHelper(@Nullable Context context) {

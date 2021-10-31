@@ -47,6 +47,7 @@
 <!--                />-->
 
             <EditText
+                android:id="@+id/editFullName"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
@@ -59,6 +60,7 @@
                 android:textColorHint="#BDBDBD" />
 
             <EditText
+                android:id="@+id/editAge"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
@@ -72,6 +74,7 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/editContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
@@ -85,6 +88,7 @@
                 android:inputType="number" />
 
             <EditText
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
@@ -122,6 +126,7 @@
                 android:layout_marginBottom="20dp" />
 
             <Button
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button"
@@ -131,6 +136,7 @@
                 android:text="Save"/>
 
             <Button
+                android:id="@+id/btnView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button"
