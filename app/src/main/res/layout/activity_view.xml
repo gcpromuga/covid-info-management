@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewActivity"
-    android:background="#fff">
+    android:background="#4DD0E1">
 
     <ListView
-        android:background="#fff"
+        android:background="#4DD0E1"
         android:id="@+id/listViewRecord"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#f00"
+        android:divider="#0097A7"
         android:dividerHeight="1dp"
-        android:listSelector="#0f0" />
+        android:listSelector="#0097A7" />
 
 </RelativeLayout>
