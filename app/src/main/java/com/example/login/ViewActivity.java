@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.login.adapter.PersonInfoAdapter;
+import com.example.login.object.PersonInfo;
+
+import java.util.ArrayList;
+
 public class ViewActivity extends AppCompatActivity {
 
     private ListView listRecord;
@@ -18,10 +23,24 @@ public class ViewActivity extends AppCompatActivity {
 
         initComponents();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_view_record, R.id.textViewFullName, countryList);
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, R.layout.list_view_record, R.id.textViewAge, countryList);
-        listRecord.setAdapter(arrayAdapter1);
-        listRecord.setAdapter(arrayAdapter);
+        ArrayList<PersonInfo> arrayOfPersonInfos = new ArrayList<>();
+        PersonInfoAdapter adapter = new PersonInfoAdapter(this, arrayOfPersonInfos);
+
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setFullName("Gene Romuga");
+        personInfo.setAge(21);
+        personInfo.setContactNo("09176123");
+
+        PersonInfo personInfo1 = new PersonInfo();
+        personInfo1.setFullName("Test Romuga");
+        personInfo1.setAge(21);
+        personInfo1.setContactNo("09176123");
+
+        adapter.add(personInfo);
+        adapter.add(personInfo1);
+
+        listRecord.setAdapter(adapter);
+
     }
 
     private void initComponents() {
