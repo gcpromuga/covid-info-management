@@ -10,10 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText editFullName;
+    private EditText editAge;
+    private EditText editContact;
+    private EditText editEmail;
     private Spinner spinnerDose;
     private Spinner spinnerVaccine;
     private Button buttonSave;
@@ -30,18 +36,58 @@ public class MainActivity extends AppCompatActivity {
         // Initialize components
         initComponents();
 
+        // Init DB
+        initDb();
+
         // Load initial data
         loadDose(new String[]{"1st", "2nd"});
         loadVaccine(new String[]{"Pfizer", "Astrazeneca", "Moderna", "Sinovac", "Janssen"});
-
-        // Initialize DB Manager
-        initDb();
 
         // Save data
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbManager.insert("Gene",12,"1st", "Pfizer");
+
+                String fullName = editFullName.getText().toString();
+                String age = editAge.getText().toString();
+                String contact = editContact.getText().toString();
+                String email = editEmail.getText().toString();
+                String dose = spinnerDose.getSelectedItem().toString();
+                String vaccine = spinnerVaccine.getSelectedItem().toString();
+
+                if (fullName.isEmpty()) {
+                    showMessage("Please enter your full name");
+                    return;
+                }
+
+                if (age.isEmpty()) {
+                    showMessage("Please enter your age");
+                    return;
+                }
+
+                if (contact.isEmpty()) {
+                    showMessage("Please enter your contact");
+                    return;
+                }
+
+                if (email.isEmpty()) {
+                    showMessage("Please enter your email");
+                    return;
+                }
+
+                if (dose.isEmpty()) {
+                    showMessage("Please select your dose");
+                    return;
+                }
+
+                if (vaccine.isEmpty()) {
+                    showMessage("Please select your vaccine");
+                    return;
+                }
+
+                dbManager.insert(fullName,age,contact,email,dose,vaccine);
+                showMessage("Successfully saved the record!");
+                resetComponents();
             }
         });
 
@@ -49,22 +95,21 @@ public class MainActivity extends AppCompatActivity {
         buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Cursor cursor = dbManager.fetch();
-//                if (cursor.moveToFirst()) {
-//                    do {
-//                        @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(dbHelper.COL_ID));
-//                        @SuppressLint("Range") String fullName = cursor.getString(cursor.getColumnIndex(dbHelper.COL_FULL_NAME));
-//                        @SuppressLint("Range") String age = cursor.getString(cursor.getColumnIndex(dbHelper.COL_AGE));
-//                        // @SuppressLint("Range") String contactNo = cursor.getString(cursor.getColumnIndex(dbHelper.COL));
-//                        Log.i("INFO ID", id+" "+fullName+" "+age);
-//
-//                    } while (cursor.moveToNext());
-//                }
                 Intent viewIntent = new Intent(MainActivity.this, ViewActivity.class);
                 startActivity(viewIntent);
-
             }
         });
+    }
+
+    private void initComponents() {
+        editFullName = (EditText) findViewById(R.id.editFullName);
+        editAge = (EditText) findViewById(R.id.editAge);
+        editContact = (EditText) findViewById(R.id.editContactNo);
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        spinnerDose = (Spinner) findViewById(R.id.spinnerDose);
+        spinnerVaccine = (Spinner) findViewById(R.id.spinnerVaccine);
+        buttonSave = (Button) findViewById(R.id.btnSave);
+        buttonView = (Button)  findViewById(R.id.btnView);
     }
 
     private void initDb() {
@@ -74,13 +119,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void initComponents() {
-        spinnerDose = (Spinner) findViewById(R.id.spinnerDose);
-        spinnerVaccine = (Spinner) findViewById(R.id.spinnerVaccine);
-        buttonSave = (Button) findViewById(R.id.btnSave);
-        buttonView = (Button)  findViewById(R.id.btnView);
     }
 
     private void loadDose(String[] doses) {
@@ -94,5 +132,20 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerVaccine.setAdapter(adapter);
     }
+
+    private void showMessage(String message) {
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    private void resetComponents() {
+       editFullName.setText("");
+       editAge.setText("");
+       editContact.setText("");
+       editEmail.setText("");
+       spinnerDose.setSelection(0);
+       spinnerVaccine.setSelection(0);
+    }
+
 
 }

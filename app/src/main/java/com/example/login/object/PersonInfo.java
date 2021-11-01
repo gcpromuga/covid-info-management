@@ -3,7 +3,7 @@ package com.example.login.object;
 public class PersonInfo {
 
     private String fullName;
-    private int age;
+    private String age;
     private String contactNo;
     private String email;
     private String dose;
@@ -17,11 +17,11 @@ public class PersonInfo {
         this.fullName = fullName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

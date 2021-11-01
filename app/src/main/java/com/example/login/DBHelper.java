@@ -15,6 +15,8 @@ public class DBHelper extends SQLiteOpenHelper {
     static final String COL_ID = "id";
     static final String COL_FULL_NAME = "full_name";
     static final String COL_AGE = "age";
+    static final String COL_CONTACT = "contact";
+    static final String COL_EMAIL = "email";
     static final String COL_DOSE = "dose";
     static final String COL_VACCINE = "vaccine";
 
@@ -23,6 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COL_FULL_NAME + " TEXT NOT NULL, "
                 + COL_AGE + " INTEGER NOT NULL, "
+                + COL_CONTACT + " TEXT NOT NULL, "
+                + COL_EMAIL + " TEXT NOT NULL, "
                 + COL_DOSE + " TEXT NOT NULL, "
                 + COL_VACCINE + " TEXT NOT NULL "
             +");";
@@ -33,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ DB_TABLE);
         sqLiteDatabase.execSQL(CREATE_DB_QUERY);
     }
 
